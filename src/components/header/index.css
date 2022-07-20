@@ -1,0 +1,13 @@
+.root {
+  display: flex;
+  justify-content: space-between;
+  height: 60px;
+  width: 100vw;
+  background-color: #ff6868;
+  border-bottom: 1px solid white;
+  box-shadow: 5px 0 10px rgba(0, 0, 0, 0.6);
+  align-items: center;
+}
+.img {
+  margin: 20px;
+}

@@ -1,0 +1,18 @@
+.root {
+  width: 100%;
+  height: 39px;
+  padding: 7px 60px 9px 15px;
+  border: none;
+  border-radius: 2px;
+  color: #333;
+  font-size: 16px;
+  font-family: "Roboto", sans-serif;
+  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 20%);
+  outline: none;
+}
+.root::placeholder {
+  font-family: "Roboto", sans-serif;
+  color: rgba(0, 0, 0, 0.25);
+  font-size: 16px;
+  font-weight: 400;
+}
