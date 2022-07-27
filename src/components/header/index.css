@@ -10,4 +10,10 @@
 }
 .img {
   margin: 20px;
+  cursor: pointer;
+}
+@media screen and (max-width: 1038px) {
+  .img {
+    cursor: auto;
+  }
 }

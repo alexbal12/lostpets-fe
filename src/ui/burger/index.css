@@ -8,7 +8,7 @@
     height: 30px;
     margin: 10px 20px;
     position: relative;
-    cursor: pointer;
+    cursor: auto;
     display: inline-block;
   }
   .root span {
