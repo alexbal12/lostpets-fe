@@ -1,11 +1,16 @@
+import { Report } from "components/publish-report";
 import React from "react";
+import { TitleText } from "ui/texts";
 
-function Report() {
+function ReportPage() {
   return (
-    <div>
-      <h1>Este es el report </h1>
-    </div>
+    <section>
+      <div style={{ marginBottom: "30px" }}>
+        <TitleText text={"Reportar mascota perdida"} />
+      </div>
+      <Report />
+    </section>
   );
 }
 
-export { Report };
+export { ReportPage };

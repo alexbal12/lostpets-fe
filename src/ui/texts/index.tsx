@@ -19,6 +19,10 @@ export function BodyBoldText({ text }) {
 export function CaptionText({ text }) {
   return <p className={css.caption}>{text}</p>;
 }
-export function LinkText({ text }) {
-  return <a className={css.link}>{text}</a>;
+export function LinkText({ text, onClick }) {
+  return (
+    <a onClick={onClick} className={css.link}>
+      {text}
+    </a>
+  );
 }

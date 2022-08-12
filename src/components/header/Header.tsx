@@ -1,13 +1,15 @@
+import patitas from "assets/patitas.png";
+import { MenuBar } from "components/menu/MenuBar";
+import { changeBurguer, changeReportCard } from "hooks";
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { MenuBar } from "components/menu/MenuBar";
 import { BurgerButton } from "ui/burger";
-import { changeBurguer } from "hooks";
-import patitas from "assets/patitas.png";
 import css from "./index.css";
 
 function Header() {
   const { burguerState, setBurguerState } = changeBurguer();
+  const { reportCardState } = changeReportCard();
+
   const navigate = useNavigate();
   function handleClick() {
     navigate("/");
@@ -16,7 +18,10 @@ function Header() {
     }
   }
   return (
-    <nav className={css.root}>
+    <nav
+      style={{ pointerEvents: `${reportCardState ? "none" : "auto"}` }}
+      className={css.root}
+    >
       <img onClick={handleClick} className={css.img} src={patitas} />
       <MenuBar />
       <BurgerButton />

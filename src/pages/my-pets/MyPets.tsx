@@ -1,11 +1,16 @@
+import { MyPets } from "components/my-pets";
 import React from "react";
+import { TitleText } from "ui/texts";
 
-function MyPets() {
+function MyPetsPage() {
   return (
     <div>
-      <h1>Este es my pets</h1>
+      <div style={{ marginBottom: "30px" }}>
+        <TitleText text={"Mis mascotas reportadas"} />
+      </div>
+      <MyPets />
     </div>
   );
 }
 
-export { MyPets };
+export { MyPetsPage };

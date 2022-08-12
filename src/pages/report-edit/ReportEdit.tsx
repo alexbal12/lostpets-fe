@@ -1,11 +1,16 @@
+import { ReportEdit } from "components/report-edit";
 import React from "react";
+import { TitleText } from "ui/texts";
 
-function ReportEdit() {
+function ReportEditPage() {
   return (
-    <div>
-      <h1>Este es el report edit </h1>
-    </div>
+    <section>
+      <div style={{ marginBottom: "30px" }}>
+        <TitleText text={"Editar mascota perdida"} />
+      </div>
+      <ReportEdit />
+    </section>
   );
 }
 
-export { ReportEdit };
+export { ReportEditPage };

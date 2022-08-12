@@ -1,11 +1,14 @@
+import { Register } from "components/register";
 import React from "react";
+import { TitleText } from "ui/texts";
 
-function Register() {
+function RegisterPage() {
   return (
-    <div>
-      <h1>Este es el register </h1>
-    </div>
+    <section style={{ display: "flex", flexDirection: "column", gap: "45px" }}>
+      <TitleText text="Mis datos" />
+      <Register />
+    </section>
   );
 }
 
-export { Register };
+export { RegisterPage };

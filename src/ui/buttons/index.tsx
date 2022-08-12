@@ -1,23 +1,31 @@
 import React from "react";
 import css from "./index.css";
 
-export function ButtonPink({ text, onClick }) {
+type BtnType = {
+  text: string;
+  handleClick?: () => void;
+  type?: "submit" | "button";
+};
+export function ButtonPink(props: BtnType) {
+  const { text, handleClick, type } = props;
   return (
-    <button onClick={onClick} className={css.pink}>
+    <button type={type} className={css.pink} onClick={handleClick}>
       {text}
     </button>
   );
 }
-export function ButtonGreen({ text, onClick }) {
+export function ButtonGreen(props: BtnType) {
+  const { text, handleClick, type } = props;
   return (
-    <button onClick={onClick} className={css.green}>
+    <button type={type} className={css.green} onClick={handleClick}>
       {text}
     </button>
   );
 }
-export function ButtonGray({ text, onClick }) {
+export function ButtonGray(props: BtnType) {
+  const { text, handleClick, type } = props;
   return (
-    <button onClick={onClick} className={css.gray}>
+    <button type={type} className={css.gray} onClick={handleClick}>
       {text}
     </button>
   );

@@ -1,18 +1,23 @@
 import { Header } from "components/header/Header";
 import { Menu } from "components/menu/Menu";
+import { ReportCard } from "components/report-card/ReportCard";
+import { changeReportCard } from "hooks";
 import React from "react";
 import { Outlet } from "react-router-dom";
 import css from "./index.css";
 
 export function Layout() {
+  const { reportCardState } = changeReportCard();
   return (
-    <div className={css.root}>
+    <div className={`${reportCardState ? css.root : ""}`}>
       <Header />
-      <div
-        style={{ margin: "20px auto", maxWidth: "700px", padding: "0px 20px" }}
+      <main
+        style={{ margin: "20px auto", maxWidth: "600px", padding: "0px 20px" }}
       >
+        <ReportCard />
+
         <Outlet />
-      </div>
+      </main>
       <Menu />
     </div>
   );

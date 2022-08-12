@@ -1,5 +1,5 @@
-.rooot::before {
-  position: absolute;
+.root::before {
+  position: fixed;
   content: "";
   top: 0;
   bottom: 0;

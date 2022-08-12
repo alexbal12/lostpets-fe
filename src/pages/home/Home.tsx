@@ -1,29 +1,14 @@
+import { Geoloc } from "components/geolocation";
 import React from "react";
-import { ButtonPink } from "ui/buttons";
-import { CaptionText, TitleText } from "ui/texts";
+import { TitleText } from "ui/texts";
 
-function Home() {
-  function handleClick() {
-    navigator.geolocation.getCurrentPosition(async (data) => {
-      console.log(await data);
-    });
-  }
+function HomePage() {
   return (
-    <div>
+    <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
       <TitleText text={"Mascotas perdidas cerca tuyo"} />
-      <div
-        style={{ textAlign: "center", marginTop: "50px", marginBottom: "22px" }}
-      >
-        <CaptionText
-          text={
-            "Para ver las mascotas reportadas cerca tuyo necesitamos permiso para conocer tu ubicación."
-          }
-        />
-      </div>
-
-      <ButtonPink text={"Dar mi ubicación"} onClick={handleClick} />
+      <Geoloc />
     </div>
   );
 }
 
-export { Home };
+export { HomePage };

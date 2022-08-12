@@ -5,24 +5,26 @@
   display: flex;
   list-style: none;
 }
-.menuBar a {
+.menuBar button {
   border-radius: 5px;
   margin: 0 30px;
   padding: 7px 13px;
 }
-.menuBar a,
-.root a {
+.menuBar button,
+.root button {
   font-family: "Poppins", sans-serif;
   font-size: 24px;
   font-weight: 700;
   color: black;
   text-decoration: none;
   display: block;
+  background: none;
+  border: none;
 }
-.menuBar a:hover,
-a:active,
-.root a:hover,
-.root a:active {
+.menuBar button:hover,
+button:active,
+.root button:hover,
+.root button:active {
   background-color: rgba(255, 255, 255, 0.4);
   transition: 0.4s;
 }
@@ -32,7 +34,8 @@ a:active,
     display: none;
   }
   .root {
-    display: block;
+    display: flex;
+    flex-direction: column;
     top: -1000px;
     left: -2000px;
     right: 0;
@@ -43,8 +46,9 @@ a:active,
     transition: all 1s ease;
     margin: 0;
     padding: 0;
+    cursor: default;
   }
-  .root a {
+  .root button {
     margin: 60px 30px 0 30px;
   }
   .background {
