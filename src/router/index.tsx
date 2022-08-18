@@ -1,3 +1,4 @@
+import { ForgotPassword } from "components/forgot-password";
 import { Layout } from "components/layout/Layout";
 import { HomePage } from "pages/home/Home";
 import { LoginPage } from "pages/login/Login";
@@ -6,6 +7,7 @@ import { MyPetsPage } from "pages/my-pets/MyPets";
 import { RegisterPage } from "pages/register/Register";
 import { ReportEditPage } from "pages/report-edit/ReportEdit";
 import { ReportPage } from "pages/report/Report";
+
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 
@@ -20,6 +22,7 @@ function AppRoutes() {
         <Route path="/report-edit" element={<ReportEditPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/password" element={<PasswordPage />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
       </Route>
     </Routes>
   );

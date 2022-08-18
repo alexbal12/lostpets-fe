@@ -11,7 +11,6 @@ export function MyPets() {
 
   async function getMyPets(token: string) {
     const resultado = await fetchMyPets(token);
-    console.log(resultado, "resultado");
     setMyPetsState(resultado);
   }
   useEffect(() => {

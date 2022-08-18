@@ -77,3 +77,21 @@ export async function fetchDataUser(token: string) {
 
   return user.json();
 }
+export async function fetchUpdateUser(fullname, password, email) {
+  console.log(password, "password");
+  console.log(email, "email");
+  console.log(fullname, "user");
+  const respuesta = await fetch(`${API_BASE_URL}/users/update`, {
+    method: "PATCH",
+    headers: {
+      "content-type": "application/json",
+    },
+    body: JSON.stringify({
+      fullname,
+      password,
+      email,
+    }),
+  });
+
+  return respuesta.json();
+}

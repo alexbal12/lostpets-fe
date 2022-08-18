@@ -13,12 +13,13 @@ export function Menu() {
 
   async function getUser(token: string) {
     const data = await fetchDataUser(token);
-    console.log(data, "data");
     setUserDataState(data);
   }
   useEffect(() => {
     if (token) {
       getUser(token);
+    } else {
+      setUserDataState([]);
     }
   }, [token]);
 
@@ -43,8 +44,6 @@ export function Menu() {
     navigate("/");
     setBurguerState(!burguerState);
   }
-  console.log(userDataState, "hay user");
-
   return (
     <div
       className={`${

@@ -17,15 +17,22 @@ export function Password() {
       navigate("/login");
     } else {
       const { token } = await fetchAuthToken(email, e.target.password.value);
-      sessionStorage.setItem("token", token);
-      navigate("/my-pets");
+      if (!token) {
+        alert("Contraseña incorrecta! Vuelva a intentarlo");
+      } else {
+        sessionStorage.setItem("token", token);
+        navigate("/my-pets");
+      }
     }
+  }
+  function handleForgotPassword() {
+    navigate("/forgot-password");
   }
   return (
     <form onSubmit={handleSubmit}>
       <InputPasswordText name="password" label="Contraseña" />
       <div style={{ textAlign: "center", marginBottom: "20px" }}>
-        <LinkText text="olvidé mi contraseña" onClick={undefined} />
+        <LinkText text="olvidé mi contraseña" onClick={handleForgotPassword} />
       </div>
       <ButtonPink text="Ingresar" />
     </form>

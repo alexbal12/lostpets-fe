@@ -1,6 +1,8 @@
 import imgEmpty from "assets/img-vacia.png";
+import { Dropzone } from "lib/Dropzone";
 import React from "react";
-import { ButtonGray, ButtonGreen, ButtonPink } from "ui/buttons";
+
+import { ButtonGray, ButtonPink } from "ui/buttons";
 import { InputText } from "ui/text-field";
 import { CaptionText } from "ui/texts";
 import css from "./index.css";
@@ -26,14 +28,15 @@ export function Report() {
         placeholder="Ingrese el nombre de su mascota"
         name="pet-name"
       />
-      <div>
+      <Dropzone />
+      {/* <div>
         <img className={css.img} src={imgEmpty} />
         <ButtonGreen
           type="button"
           text="agregar/modificar foto"
           handleClick={handleClick}
         />
-      </div>
+      </div> */}
       <div>
         <img src={imgEmpty} className={css.img} />
         <InputText value="" label="Ubicacion" placeholder="" name="location" />
