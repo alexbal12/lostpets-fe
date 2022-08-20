@@ -1,5 +1,6 @@
 const API_BASE_URL = "https://df-lost-pets.herokuapp.com";
-
+const MAPBOX_TOKEN =
+  "pk.eyJ1IjoiYWxleGJhbDEyIiwiYSI6ImNremd2OGt2ajBrNzIydXFyY2ttZms4MG4ifQ.wf6yv7eCwL_zsNO72GofNg";
 export async function fetchNearbyPets(lat: any, long: any) {
   const pets = await fetch(`${API_BASE_URL}/pets?lat=${lat}&lng=${long}`, {
     method: "get",
@@ -94,7 +95,7 @@ export async function fetchUpdateUser(fullname, password, email) {
 }
 export async function geoBusqueda(lng, lat) {
   const consulta = await fetch(
-    `https://api.mapbox.com/geocoding/v5/mapbox.places/${lng},${lat}.json?access_token=${process.env.MAPBOX_TOKEN}`
+    `https://api.mapbox.com/geocoding/v5/mapbox.places/${lng},${lat}.json?access_token=${MAPBOX_TOKEN}`
   );
   const data = await consulta.json();
   return data.features[0].place_name;

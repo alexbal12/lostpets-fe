@@ -4,7 +4,9 @@ import React, { useEffect, useRef, useState } from "react";
 import { geoBusqueda } from "./api";
 import css from "./index.css";
 //me logueo a mapbox con el token
-mapboxgl.accessToken = process.env.MAPBOX_TOKEN;
+const MAPBOX_TOKEN =
+  "pk.eyJ1IjoiYWxleGJhbDEyIiwiYSI6ImNremd2OGt2ajBrNzIydXFyY2ttZms4MG4ifQ.wf6yv7eCwL_zsNO72GofNg";
+mapboxgl.accessToken = MAPBOX_TOKEN;
 
 export function Mapbox({ lat, lng }) {
   const mapContainer = useRef(null);
