@@ -78,9 +78,6 @@ export async function fetchDataUser(token: string) {
   return user.json();
 }
 export async function fetchUpdateUser(fullname, password, email) {
-  console.log(password, "password");
-  console.log(email, "email");
-  console.log(fullname, "user");
   const respuesta = await fetch(`${API_BASE_URL}/users/update`, {
     method: "PATCH",
     headers: {
@@ -94,4 +91,59 @@ export async function fetchUpdateUser(fullname, password, email) {
   });
 
   return respuesta.json();
+}
+export async function geoBusqueda(lng, lat) {
+  const consulta = await fetch(
+    `https://api.mapbox.com/geocoding/v5/mapbox.places/${lng},${lat}.json?access_token=${process.env.MAPBOX_TOKEN}`
+  );
+  const data = await consulta.json();
+  return data.features[0].place_name;
+}
+type petType = {
+  name: string;
+  img: string;
+  last_lat: string;
+  last_lng: string;
+  state: string;
+  userEmail: string;
+};
+export async function fecthReportPet(petData: petType, token: string) {
+  const publish = await fetch(`${API_BASE_URL}/pets`, {
+    method: "POST",
+    headers: {
+      "content-type": "application/json",
+      Authorization: "bearer " + token,
+    },
+    body: JSON.stringify({
+      ...petData,
+    }),
+  });
+  return publish.json();
+}
+export async function fecthUpdatePet(
+  id: number,
+  petData: petType,
+  token: string
+) {
+  const update = await fetch(`${API_BASE_URL}/pets/${id}`, {
+    method: "PUT",
+    headers: {
+      "content-type": "application/json",
+      Authorization: "bearer " + token,
+    },
+    body: JSON.stringify({
+      ...petData,
+    }),
+  });
+  return update.json();
+}
+export async function fecthDeletePet(id: number, token: string) {
+  const delate = await fetch(`${API_BASE_URL}/pets/${id}`, {
+    method: "DELETE",
+    headers: {
+      "content-type": "application/json",
+      Authorization: "bearer " + token,
+    },
+  });
+  return delate.json();
 }

@@ -4,10 +4,10 @@ import { HomePage } from "pages/home/Home";
 import { LoginPage } from "pages/login/Login";
 import { PasswordPage } from "pages/login/Password";
 import { MyPetsPage } from "pages/my-pets/MyPets";
+import { NotFound } from "pages/not-found/NotFound";
 import { RegisterPage } from "pages/register/Register";
 import { ReportEditPage } from "pages/report-edit/ReportEdit";
 import { ReportPage } from "pages/report/Report";
-
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 
@@ -24,6 +24,7 @@ function AppRoutes() {
         <Route path="/password" element={<PasswordPage />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
       </Route>
+      <Route path="*" element={<NotFound />} />
     </Routes>
   );
 }

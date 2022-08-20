@@ -1,4 +1,4 @@
-import { ReportEdit } from "components/report-edit";
+import { ReportEdit } from "components/publish-report-edit";
 import React from "react";
 import { TitleText } from "ui/texts";
 

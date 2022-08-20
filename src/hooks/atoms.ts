@@ -28,3 +28,7 @@ export const userDataAtom = atom({
   key: "userState",
   default: [],
 });
+export const petPositionAtom = atom({
+  key: "petPosition",
+  default: [],
+});

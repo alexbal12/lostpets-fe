@@ -27,8 +27,10 @@ export function NearbyPets() {
               key={pet.objectID}
               id={pet.objectID}
               name={pet.name}
-              ubicacion={pet._geoloc.lat + " " + pet._geoloc.lng}
+              lat={pet._geoloc.lat}
+              lng={pet._geoloc.lng}
               img={pet.img}
+              state={pet.state}
             />
           ))}
         </div>

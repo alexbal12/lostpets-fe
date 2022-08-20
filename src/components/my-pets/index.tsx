@@ -3,12 +3,10 @@ import { myPets } from "hooks";
 import { fetchMyPets } from "lib/api";
 import React, { useEffect } from "react";
 import { CaptionText } from "ui/texts";
-import css from "./index.css";
 
 export function MyPets() {
   const { myPetsState, setMyPetsState } = myPets();
   const token = sessionStorage.getItem("token") || "";
-
   async function getMyPets(token: string) {
     const resultado = await fetchMyPets(token);
     setMyPetsState(resultado);
@@ -20,7 +18,7 @@ export function MyPets() {
   }, []);
 
   return myPetsState.length == 0 ? (
-    <div className={css.root}>
+    <div>
       <CaptionText text="Aun no reportaste mascotas perdidas" />
     </div>
   ) : (
@@ -31,8 +29,10 @@ export function MyPets() {
           key={pet.id}
           id={pet.id}
           name={pet.name}
-          ubicacion={pet.last_lat + " " + pet.last_lng}
+          lat={pet.last_lat}
+          lng={pet.last_lng}
           img={pet.img}
+          state={pet.state}
         />
       ))}
     </div>

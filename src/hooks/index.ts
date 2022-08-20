@@ -4,6 +4,7 @@ import {
   currentPetStateAtom,
   emailDataAtom,
   MyPetsStateAtom,
+  petPositionAtom,
   petsStateAtom,
   reportCardStateAtom,
   userDataAtom,
@@ -38,4 +39,8 @@ export function myPets() {
 export function userData() {
   const [userDataState, setUserDataState] = useRecoilState(userDataAtom);
   return { userDataState, setUserDataState };
+}
+export function positionPet() {
+  const [lngLat, setLngLat] = useRecoilState(petPositionAtom);
+  return { lngLat, setLngLat };
 }
