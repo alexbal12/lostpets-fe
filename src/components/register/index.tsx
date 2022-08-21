@@ -31,8 +31,8 @@ export function Register() {
         alert("Se cambió la contraseña correctamente");
         navigate("/my-pets");
       } else {
-        console.log(respuesta);
-        alert("Ocurrió un error inesperado");
+        alert(respuesta);
+        setLoadButton(false);
       }
     } else {
       alert(
