@@ -89,7 +89,7 @@ button:active,
   background-color: #d95b54;
   width: 350px;
   height: 200px;
-  position: fixed;
+  position: absolute;
   top: 59px;
   right: -350px;
   transition: all 0.3s;
