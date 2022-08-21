@@ -14,6 +14,7 @@ export function Layout() {
       <div className={`${burguerState ? css.estatic : ""}`}>
         <Header />
         <main
+          className={`${burguerState ? css.main : ""}`}
           style={{
             margin: "20px auto",
             maxWidth: "600px",

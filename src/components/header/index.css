@@ -12,8 +12,15 @@
   margin: 20px;
   cursor: pointer;
 }
+.img:hover {
+  transition: 0.3s;
+  opacity: 0.7;
+}
 @media screen and (max-width: 1038px) {
   .img {
     cursor: auto;
+  }
+  .img:hover {
+    opacity: 1;
   }
 }

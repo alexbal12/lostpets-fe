@@ -39,7 +39,6 @@ export function Menu() {
     }
   }
   function handleLinkClick() {
-    console.log("cerre sesion");
     sessionStorage.removeItem("token");
     navigate("/");
     setBurguerState(!burguerState);
