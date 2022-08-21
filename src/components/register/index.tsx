@@ -1,12 +1,15 @@
-import { userData } from "hooks";
-import { fetchDataUser } from "lib/api";
+import { loadingButton, userData } from "hooks";
+import { fetchDataUser, fetchUpdateUser } from "lib/api";
 import React, { useEffect } from "react";
-import { ButtonPink } from "ui/buttons";
+import { useNavigate } from "react-router-dom";
+import { Button } from "ui/buttons";
 import { InputPasswordText, InputText } from "ui/text-field";
 
 export function Register() {
   const token = sessionStorage.getItem("token") || "";
   const { userDataState, setUserDataState } = userData();
+  const { setLoadButton } = loadingButton();
+  const navigate = useNavigate();
   async function getUser(token: string) {
     setUserDataState(await fetchDataUser(token));
   }
@@ -15,9 +18,28 @@ export function Register() {
       getUser(token);
     }
   }, []);
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
-    console.log("hicieron click");
+    const userEmail = userDataState["email"];
+    const userName = e.target.fullname.value;
+    const password = e.target.password.value;
+    const passCheck = e.target[`pass-check`].value;
+    if (password == passCheck && password != "") {
+      const respuesta = await fetchUpdateUser(userName, password, userEmail);
+      if (respuesta[0] == 1) {
+        console.log(respuesta);
+        alert("Se cambió la contraseña correctamente");
+        navigate("/my-pets");
+      } else {
+        console.log(respuesta);
+        alert("Ocurrió un error inesperado");
+      }
+    } else {
+      alert(
+        "Las contraseñas no coinciden o los campos estan vacios, vuelva a intentarlo"
+      );
+      setLoadButton(false);
+    }
   }
 
   return (
@@ -37,7 +59,7 @@ export function Register() {
         <InputPasswordText name="password" label="Contraseña" />
         <InputPasswordText name="pass-check" label="Repetir contraseña" />
       </div>
-      <ButtonPink text="Guardar" />
+      <Button color="pink" text="Guardar" />
     </form>
   );
 }

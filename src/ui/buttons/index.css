@@ -1,42 +1,48 @@
-.pink,
-.green,
-.gray {
-  width: 100%;
-  border: none;
-  height: 50px;
-  border-radius: 4px;
+.text {
   font-family: "Poppins", sans-serif;
   font-weight: 700;
   font-size: 16px;
   color: #000000;
 }
-.pink {
-  background: #ff9ef5;
+.button {
+  width: 100%;
+  border: none;
+  height: 50px;
+  border-radius: 4px;
+  position: relative;
 }
-.pink:hover {
-  background: #ffbaf8;
+.button:hover {
+  opacity: 0.8;
 }
-.pink:active {
-  border: 2px solid #ff3ed5;
+.button:active {
+  border: 8px solid #000000;
   color: white;
 }
-.green {
-  background: #95e99e;
+.loading .text {
+  visibility: hidden;
+  opacity: 0;
 }
-.green:hover {
-  background: hsl(126, 66%, 90%);
+.loading::after {
+  content: "";
+  position: absolute;
+  width: 35px;
+  height: 35px;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  border: 6px solid transparent;
+  border-top-color: #ffffff;
+  border-radius: 50%;
+  animation: loading-spinner 1s ease infinite;
 }
-.green:active {
-  border: 2px solid #52e961;
-  color: white;
-}
-.gray {
-  background: #cdcdcd;
-}
-.gray:hover {
-  background: #e9e9e9;
-}
-.gray:active {
-  border: 2px solid #000000;
-  color: white;
+@keyframes loading-spinner {
+  from {
+    transform: rotate(0turn);
+  }
+
+  to {
+    transform: rotate(1turn);
+  }
 }

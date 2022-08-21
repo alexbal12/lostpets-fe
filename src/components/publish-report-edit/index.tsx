@@ -4,7 +4,7 @@ import { Dropzone } from "lib/Dropzone";
 import { Mapbox } from "lib/Mapbox";
 import React from "react";
 import { Navigate, useNavigate } from "react-router-dom";
-import { ButtonGreen, ButtonPink } from "ui/buttons";
+import { Button } from "ui/buttons";
 import { InputText } from "ui/text-field";
 import { CaptionText, LinkText } from "ui/texts";
 
@@ -128,8 +128,9 @@ export function ReportEdit() {
           marginBottom: "20px",
         }}
       >
-        <ButtonPink type="submit" text="Guardar" />
-        <ButtonGreen
+        <Button color="pink" type="submit" text="Guardar" />
+        <Button
+          color="green"
           type="button"
           text="Reportar como encontrado"
           handleClick={handleFound}

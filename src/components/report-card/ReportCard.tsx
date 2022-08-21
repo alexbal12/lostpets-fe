@@ -2,7 +2,7 @@ import cruz from "assets/Vector.png";
 import { allPets, changeReportCard, currentPet } from "hooks";
 import { fetchReportData } from "lib/api";
 import React from "react";
-import { ButtonPink } from "ui/buttons";
+import { Button } from "ui/buttons";
 import { InputLargeText, InputPhoneNumberText, InputText } from "ui/text-field";
 import { TitleText } from "ui/texts";
 import css from "./index.css";
@@ -47,7 +47,7 @@ export function ReportCard() {
         />
         <InputPhoneNumberText name="phone-number" label="Tu telefono" />
         <InputLargeText name="message" label="Donde lo viste?" />
-        <ButtonPink text="Enviar" />
+        <Button color="pink" text="Enviar" />
       </form>
     </div>
   );

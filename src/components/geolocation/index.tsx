@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { ButtonPink } from "ui/buttons";
+import { Button } from "ui/buttons";
 import { CaptionText } from "ui/texts";
 import { NearbyPets } from "./NearbyPets";
 
@@ -33,7 +33,7 @@ export function Geoloc() {
         />
       </div>
       <form onSubmit={handleSubmit}>
-        <ButtonPink text={"Dar mi ubicación"} />
+        <Button color="pink" text={"Dar mi ubicación"} />
       </form>
     </div>
   ) : (

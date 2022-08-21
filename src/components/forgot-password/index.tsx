@@ -1,7 +1,7 @@
 import { fetchCheckUser, fetchUpdateUser } from "lib/api";
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { ButtonPink } from "ui/buttons";
+import { Button } from "ui/buttons";
 import { InputPasswordText, InputText } from "ui/text-field";
 
 export function ForgotPassword() {
@@ -48,7 +48,7 @@ export function ForgotPassword() {
         <InputPasswordText name="password" label="Contraseña" />
         <InputPasswordText name="pass-check" label="Repetir contraseña" />
       </div>
-      <ButtonPink text="Restablecer contraseña" />
+      <Button color="pink" text="Restablecer contraseña" />
     </form>
   );
 }

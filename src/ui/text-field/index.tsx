@@ -9,7 +9,6 @@ export function InputText({ label, placeholder, name, value }) {
       <input
         defaultValue={value}
         name={name}
-        required
         className={css.root}
         type="text"
         placeholder={placeholder}
@@ -24,7 +23,6 @@ export function InputPasswordText({ label, name }) {
       <input
         name={name}
         className={css.root}
-        required
         type="password"
         placeholder="Ingrese su contraseña"
       ></input>
@@ -38,7 +36,6 @@ export function InputPhoneNumberText({ label, name }) {
       <input
         name={name}
         className={css.root}
-        required
         type="number"
         placeholder="Ingrese su número de teléfono"
       ></input>

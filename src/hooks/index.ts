@@ -3,6 +3,7 @@ import {
   burguerStateAtom,
   currentPetStateAtom,
   emailDataAtom,
+  loadButtonAtom,
   MyPetsStateAtom,
   petPositionAtom,
   petsStateAtom,
@@ -43,4 +44,8 @@ export function userData() {
 export function positionPet() {
   const [lngLat, setLngLat] = useRecoilState(petPositionAtom);
   return { lngLat, setLngLat };
+}
+export function loadingButton() {
+  const [loadButton, setLoadButton] = useRecoilState(loadButtonAtom);
+  return { loadButton, setLoadButton };
 }

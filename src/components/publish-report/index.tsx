@@ -1,14 +1,16 @@
 import imgEmpty from "assets/img-vacia.png";
-import { positionPet, userData } from "hooks";
+import { loadingButton, positionPet, userData } from "hooks";
 import { fecthReportPet } from "lib/api";
 import { Dropzone } from "lib/Dropzone";
 import { Mapbox } from "lib/Mapbox";
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { ButtonGray, ButtonPink } from "ui/buttons";
+import { Button } from "ui/buttons";
 import { InputText } from "ui/text-field";
 import { CaptionText } from "ui/texts";
+
 export function Report() {
+  const { setLoadButton } = loadingButton();
   const { lngLat } = positionPet();
   const { userDataState } = userData();
   const token = sessionStorage.getItem("token");
@@ -23,6 +25,7 @@ export function Report() {
     const petImg = e.target.petImg.src;
     const state = "perdido";
     const userEmail = userDataState["email"];
+    setLoadButton(false);
     if (petName == "") {
       alert("Ingrese el nombre de su mascota");
     } else if (petImg.length < 100) {
@@ -66,8 +69,13 @@ export function Report() {
         <CaptionText text="Arrastré el marcador celeste para indicar en que zona perdió su mascota" />
       </div>
       <div style={{ display: "flex", flexDirection: "column", gap: "18px" }}>
-        <ButtonPink type="submit" text="Reportar como perdido" />
-        <ButtonGray type="button" text="Cancelar" handleClick={handleCancel} />
+        <Button color="pink" type="submit" text="Reportar como perdido" />
+        <Button
+          color="gray"
+          type="button"
+          text="Cancelar"
+          handleClick={handleCancel}
+        />
       </div>
     </form>
   );

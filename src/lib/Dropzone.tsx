@@ -1,6 +1,7 @@
+import { loadingButton } from "hooks";
 import React, { useState } from "react";
 import { useDropzone } from "react-dropzone";
-import { ButtonGreen } from "ui/buttons";
+import { Button } from "ui/buttons";
 const img: any = {
   width: "100%",
   maxHeight: "300px",
@@ -10,6 +11,7 @@ const img: any = {
 
 export function Dropzone({ idImg, src }) {
   const [files, setFiles] = useState([]);
+  const { setLoadButton } = loadingButton();
   const { getRootProps, open } = useDropzone({
     noClick: true,
     noKeyboard: true,
@@ -19,13 +21,15 @@ export function Dropzone({ idImg, src }) {
         setFiles(e.target.result);
       };
       reader.readAsDataURL(acceptedFiles[0]);
+      setLoadButton(false);
     },
   });
 
   return (
     <div {...getRootProps({ className: "dropzone" })}>
       <img id={idImg} style={img} src={files.length == 0 ? src : files} />
-      <ButtonGreen
+      <Button
+        color="green"
         text="agregar/modificar foto"
         type="button"
         handleClick={open}

@@ -32,3 +32,7 @@ export const petPositionAtom = atom({
   key: "petPosition",
   default: [],
 });
+export const loadButtonAtom = atom({
+  key: "loadButton",
+  default: false,
+});
