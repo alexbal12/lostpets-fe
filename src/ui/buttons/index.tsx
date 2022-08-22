@@ -10,6 +10,7 @@ type BtnType = {
 };
 export function Button(props: BtnType) {
   const { loadButton, setLoadButton } = loadingButton();
+  const [enabled, setEnabled] = useState(false);
   const { text, handleClick, type, color } = props;
   const [colorButton, setColorButton] = useState({});
   useEffect(() => {
@@ -24,13 +25,16 @@ export function Button(props: BtnType) {
     }, []);
   function handleClickBtn() {
     setLoadButton(!loadButton);
+    setEnabled(!enabled);
     handleClick && handleClick();
   }
   return (
     <button
       style={colorButton}
       type={type}
-      className={`${loadButton ? css.button + " " + css.loading : css.button}`}
+      className={`${
+        loadButton && enabled ? css.button + " " + css.loading : css.button
+      }`}
       onClick={handleClickBtn}
     >
       <span className={css.text}>{text}</span>

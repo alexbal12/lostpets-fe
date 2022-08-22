@@ -2,11 +2,11 @@ import { Card } from "components/pet-card/Card";
 import { allPets } from "hooks";
 import { fetchNearbyPets } from "lib/api";
 import React, { useEffect } from "react";
+import { CaptionText } from "ui/texts";
 
 export function NearbyPets() {
   const location = JSON.parse(sessionStorage.getItem("location"));
   const { petsState, setPetsState } = allPets();
-
   const getPets = async (loc) => {
     const data = await fetchNearbyPets(loc.lat, loc.long);
     setPetsState(data);
@@ -19,7 +19,7 @@ export function NearbyPets() {
 
   return (
     <div>
-      {petsState ? (
+      {petsState.length != 0 ? (
         <div style={{ display: "flex", flexDirection: "column", gap: "30px" }}>
           {petsState.map((pet) => (
             <Card
@@ -35,7 +35,9 @@ export function NearbyPets() {
           ))}
         </div>
       ) : (
-        <div>"No hay mascotas"</div>
+        <div>
+          <CaptionText text="Por suerte no hay mascotas perdidas cerca de tu zona" />
+        </div>
       )}
     </div>
   );
