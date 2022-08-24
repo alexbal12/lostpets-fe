@@ -148,3 +148,17 @@ export async function fecthDeletePet(id: number, token: string) {
   });
   return delate.json();
 }
+export async function fecthCreateUser(fullname, email, password) {
+  const userCreate = await fetch(`${API_BASE_URL}/auth`, {
+    method: "POST",
+    headers: {
+      "content-type": "application/json",
+    },
+    body: JSON.stringify({
+      fullname,
+      email,
+      password,
+    }),
+  });
+  return userCreate.json();
+}

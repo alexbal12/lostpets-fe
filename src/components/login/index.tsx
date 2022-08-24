@@ -15,11 +15,23 @@ export function Login() {
     if (email == "") {
       alert("Campo obligatorio, ingrese un email");
       setLoadButton(false);
+    } else if (
+      !/^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i.test(
+        email
+      )
+    ) {
+      alert("Email invalido, ingrese un Email valido!");
+      setLoadButton(false);
     } else {
       const respuesta = await fetchCheckUser(email);
       if (respuesta.message) {
-        alert(respuesta.message);
-        setLoadButton(false);
+        if (confirm(respuesta.message + ". Desea crear un usuario nuevo?")) {
+          navigate("/register");
+          setLoadButton(false);
+        } else {
+          console.log("no acepto");
+          setLoadButton(false);
+        }
       } else {
         setEmailDataState(respuesta);
         navigate("/password");

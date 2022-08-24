@@ -1,5 +1,6 @@
 import { ForgotPassword } from "components/forgot-password";
 import { Layout } from "components/layout/Layout";
+import { EditRegisterPage } from "pages/edit-register/Edit-Register";
 import { HomePage } from "pages/home/Home";
 import { LoginPage } from "pages/login/Login";
 import { PasswordPage } from "pages/login/Password";
@@ -23,6 +24,7 @@ function AppRoutes() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/password" element={<PasswordPage />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/edit-register" element={<EditRegisterPage />} />
       </Route>
       <Route path="*" element={<NotFound />} />
     </Routes>

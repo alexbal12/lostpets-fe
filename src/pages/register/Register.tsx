@@ -5,7 +5,7 @@ import { TitleText } from "ui/texts";
 function RegisterPage() {
   return (
     <section style={{ display: "flex", flexDirection: "column", gap: "45px" }}>
-      <TitleText text="Mis datos" />
+      <TitleText text="Crear nuevo usuario" />
       <Register />
     </section>
   );

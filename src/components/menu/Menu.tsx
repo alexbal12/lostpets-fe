@@ -31,7 +31,7 @@ export function Menu() {
     if (token == "") {
       navigate("/login");
     } else if (name == "mydata") {
-      navigate("/register");
+      navigate("/edit-register");
     } else if (name == "mypets") {
       navigate("/my-pets");
     } else if (name == "report") {
