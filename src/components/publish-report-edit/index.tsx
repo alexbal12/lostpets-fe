@@ -1,5 +1,5 @@
 import { currentPet, myPets, positionPet } from "hooks";
-import { fecthDeletePet, fecthUpdatePet } from "lib/api";
+import { fecthDeletePet, fecthUpdatePet, fetchMyPets } from "lib/api";
 import { Dropzone } from "lib/Dropzone";
 import { Mapbox } from "lib/Mapbox";
 import React from "react";
@@ -15,7 +15,7 @@ export function ReportEdit() {
   //guarda la mascota en este hook
   const { currentPetState } = currentPet();
   //obtener todas las mascotas del usuario
-  const { myPetsState } = myPets();
+  const { myPetsState, setMyPetsState } = myPets();
   //busca la mascota segun "id"
   const pet = myPetsState.find((pet) => pet.id == `${currentPetState}`);
 
@@ -80,6 +80,8 @@ export function ReportEdit() {
       if (update[0] == 1) {
         alert("Se actualizaron los datos");
         navigate("/my-pets");
+        const resultado = await fetchMyPets(token);
+        setMyPetsState(resultado);
       } else {
         alert("Algo salió mal");
         navigate("/my-pets");

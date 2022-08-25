@@ -15,7 +15,7 @@ export function MyPets() {
     if (token) {
       getMyPets(token);
     }
-  }, []);
+  }, [myPetsState]);
 
   return myPetsState.length == 0 ? (
     <div>

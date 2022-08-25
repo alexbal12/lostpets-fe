@@ -17,7 +17,7 @@ export function EditRegister() {
     if (token) {
       getUser(token);
     }
-  }, []);
+  }, [userDataState]);
   async function handleSubmit(e) {
     e.preventDefault();
     const userEmail = userDataState["email"];
@@ -30,6 +30,7 @@ export function EditRegister() {
         console.log(respuesta);
         alert("Se cambió la contraseña correctamente");
         navigate("/my-pets");
+        setUserDataState(await fetchDataUser(token));
       } else {
         alert(respuesta.error);
         setLoadButton(false);
