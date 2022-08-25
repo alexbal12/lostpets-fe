@@ -12,7 +12,7 @@ const img: any = {
 export function Dropzone({ idImg, src }) {
   const [files, setFiles] = useState([]);
   const { setLoadButton } = loadingButton();
-  const { getRootProps, open } = useDropzone({
+  const { getRootProps, getInputProps, open, acceptedFiles } = useDropzone({
     noClick: true,
     noKeyboard: true,
     onDrop: (acceptedFiles) => {
@@ -27,6 +27,7 @@ export function Dropzone({ idImg, src }) {
 
   return (
     <div {...getRootProps({ className: "dropzone" })}>
+      <input {...getInputProps()} />
       <img id={idImg} style={img} src={files.length == 0 ? src : files} />
       <Button
         color="green"
