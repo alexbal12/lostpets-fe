@@ -1,4 +1,4 @@
-const API_BASE_URL = "https://df-lost-pets.herokuapp.com";
+const API_BASE_URL = "https://lost-pets-guq1.onrender.com";
 const MAPBOX_TOKEN =
   "pk.eyJ1IjoiYWxleGJhbDEyIiwiYSI6ImNremd2OGt2ajBrNzIydXFyY2ttZms4MG4ifQ.wf6yv7eCwL_zsNO72GofNg";
 export async function fetchNearbyPets(lat: any, long: any) {
