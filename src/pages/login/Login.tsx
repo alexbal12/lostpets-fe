@@ -10,7 +10,7 @@ function LoginPage() {
     if (token != "") {
       navigate("/");
     }
-  });
+  }, []);
   return (
     <section>
       <div style={{ textAlign: "center", marginBottom: "50px" }}>

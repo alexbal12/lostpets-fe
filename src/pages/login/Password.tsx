@@ -11,7 +11,7 @@ function PasswordPage() {
     if (token != "") {
       navigate("/");
     }
-  });
+  }, []);
   return (
     <section>
       <div style={{ textAlign: "center", marginBottom: "50px" }}>

@@ -14,7 +14,7 @@ export function ForgotPassword() {
     if (emailDataState.length == 0) {
       navigate("/login");
     }
-  });
+  }, []);
   async function userName(email) {
     const respuesta = await fetchCheckUser(email);
     return respuesta.fullname;

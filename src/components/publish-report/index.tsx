@@ -16,8 +16,6 @@ export function Report() {
   const token = sessionStorage.getItem("token");
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
-  console.log(loading);
-
   function handleCancel() {
     navigate("/my-pets");
   }

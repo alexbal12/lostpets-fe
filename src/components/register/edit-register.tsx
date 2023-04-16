@@ -26,7 +26,6 @@ export function EditRegister() {
     if (password == passCheck && password != "") {
       const respuesta = await fetchUpdateUser(userName, password, userEmail);
       if (respuesta[0] == 1) {
-        console.log(respuesta);
         alert("Se cambió la contraseña correctamente");
         navigate("/my-pets");
         setUserDataState(await fetchDataUser(token));

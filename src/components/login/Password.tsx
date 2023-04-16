@@ -1,6 +1,6 @@
 import { checkEmail } from "hooks";
 import { fetchAuthToken } from "lib/api";
-import React, { useEffect } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "ui/buttons";
 import { InputPasswordText } from "ui/text-field";

@@ -13,7 +13,7 @@ export function Register() {
     if (emailDataState.length == 0) {
       navigate("/login");
     }
-  });
+  }, []);
 
   const [loading, setLoading] = useState(false);
   async function handleSubmit(e) {
