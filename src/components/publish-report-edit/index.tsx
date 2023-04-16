@@ -2,14 +2,16 @@ import { currentPet, myPets, positionPet } from "hooks";
 import { fecthDeletePet, fecthUpdatePet, fetchMyPets } from "lib/api";
 import { Dropzone } from "lib/Dropzone";
 import { Mapbox } from "lib/Mapbox";
-import React from "react";
+import React, { useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import { Button } from "ui/buttons";
 import { InputText } from "ui/text-field";
 import { CaptionText, LinkText } from "ui/texts";
+import { SpinnerLoading } from "ui/spinner";
 
 export function ReportEdit() {
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
   const token = sessionStorage.getItem("token");
   const { lngLat } = positionPet();
   //guarda la mascota en este hook
@@ -76,6 +78,7 @@ export function ReportEdit() {
       alert("Nada cambió");
       navigate("/my-pets");
     } else {
+      setLoading(true);
       const update = await fecthUpdatePet(pet.id, newDataPet, token);
       if (update[0] == 1) {
         alert("Se actualizaron los datos");
@@ -106,40 +109,49 @@ export function ReportEdit() {
   return !pet ? (
     <Navigate to="/" />
   ) : (
-    <form
-      style={{ display: "flex", flexDirection: "column", gap: "35px" }}
-      onSubmit={submitForm}
-    >
-      <InputText
-        value={pet.name}
-        label="Nombre"
-        placeholder="Ingrese el nombre de su mascota"
-        name="pet-name"
-      />
-      <Dropzone idImg="petImg" src={pet.img} />
-      <div>
-        <Mapbox lat={pet.last_lat} lng={pet.last_lng} />
-        <CaptionText text="Arrastré el marcador celeste para indicar en que zona perdió su mascota" />
-      </div>
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          gap: "18px",
-          alignItems: "center",
-          marginBottom: "20px",
-        }}
-      >
-        <Button color="pink" type="submit" text="Guardar" />
-        <Button
-          color="green"
-          type="button"
-          text="Reportar como encontrado"
-          handleClick={handleFound}
-        />
-        <br />
-        <LinkText text="despublicar" onClick={handleLink} />
-      </div>
-    </form>
+    <>
+      {loading ? (
+        <>
+          <SpinnerLoading />
+        </>
+      ) : (
+        <form
+          style={{ display: "flex", flexDirection: "column", gap: "35px" }}
+          onSubmit={submitForm}
+        >
+          <InputText
+            value={pet.name}
+            label="Nombre"
+            placeholder="Ingrese el nombre de su mascota"
+            name="pet-name"
+            disabled={false}
+          />
+          <Dropzone idImg="petImg" src={pet.img} />
+          <div>
+            <Mapbox lat={pet.last_lat} lng={pet.last_lng} />
+            <CaptionText text="Arrastré el marcador celeste para indicar en que zona perdió su mascota" />
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: "18px",
+              alignItems: "center",
+              marginBottom: "20px",
+            }}
+          >
+            <Button color="pink" type="submit" text="Guardar" />
+            <Button
+              color="green"
+              type="button"
+              text="Reportar como encontrado"
+              handleClick={handleFound}
+            />
+            <br />
+            <LinkText text="despublicar" onClick={handleLink} />
+          </div>
+        </form>
+      )}
+    </>
   );
 }

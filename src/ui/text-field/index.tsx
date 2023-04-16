@@ -2,7 +2,7 @@ import React from "react";
 import { CaptionText } from "ui/texts";
 import css from "./index.css";
 
-export function InputText({ label, placeholder, name, value }) {
+export function InputText({ label, placeholder, name, value, disabled }) {
   return (
     <div>
       <CaptionText text={label} />
@@ -12,6 +12,7 @@ export function InputText({ label, placeholder, name, value }) {
         className={css.root}
         type="text"
         placeholder={placeholder}
+        disabled={disabled}
       ></input>
     </div>
   );

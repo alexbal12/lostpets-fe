@@ -1,20 +1,22 @@
 import imgEmpty from "assets/img-vacia.png";
-import { loadingButton, positionPet, userData } from "hooks";
+import { positionPet, userData } from "hooks";
 import { fecthReportPet } from "lib/api";
 import { Dropzone } from "lib/Dropzone";
 import { Mapbox } from "lib/Mapbox";
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "ui/buttons";
+import { SpinnerLoading } from "ui/spinner";
 import { InputText } from "ui/text-field";
 import { CaptionText } from "ui/texts";
 
 export function Report() {
-  const { setLoadButton } = loadingButton();
   const { lngLat } = positionPet();
   const { userDataState } = userData();
   const token = sessionStorage.getItem("token");
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
+  console.log(loading);
 
   function handleCancel() {
     navigate("/my-pets");
@@ -25,7 +27,6 @@ export function Report() {
     const petImg = e.target.petImg.src;
     const state = "perdido";
     const userEmail = userDataState["email"];
-    setLoadButton(false);
     if (petName == "") {
       alert("Ingrese el nombre de su mascota");
     } else if (petImg.length < 100) {
@@ -34,6 +35,7 @@ export function Report() {
     } else if (lngLat.length == 0) {
       alert("Seleccione en el mapa donde perdió su mascota");
     } else {
+      setLoading(true);
       const pet = {
         name: petName,
         img: petImg,
@@ -52,7 +54,9 @@ export function Report() {
     }
   }
 
-  return (
+  return loading ? (
+    <SpinnerLoading />
+  ) : (
     <form
       style={{ display: "flex", flexDirection: "column", gap: "35px" }}
       onSubmit={submitForm}
@@ -62,6 +66,7 @@ export function Report() {
         label="Nombre"
         placeholder="Ingrese el nombre de su mascota"
         name="pet-name"
+        disabled={false}
       />
       <Dropzone idImg="petImg" src={imgEmpty} />
       <div>

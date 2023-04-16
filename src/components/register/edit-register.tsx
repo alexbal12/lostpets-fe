@@ -1,4 +1,4 @@
-import { loadingButton, userData } from "hooks";
+import { userData } from "hooks";
 import { fetchDataUser, fetchUpdateUser } from "lib/api";
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
@@ -8,7 +8,6 @@ import { InputPasswordText, InputText } from "ui/text-field";
 export function EditRegister() {
   const token = sessionStorage.getItem("token") || "";
   const { userDataState, setUserDataState } = userData();
-  const { setLoadButton } = loadingButton();
   const navigate = useNavigate();
   async function getUser(token: string) {
     setUserDataState(await fetchDataUser(token));
@@ -33,13 +32,11 @@ export function EditRegister() {
         setUserDataState(await fetchDataUser(token));
       } else {
         alert(respuesta.error);
-        setLoadButton(false);
       }
     } else {
       alert(
         "Las contraseñas no coinciden o los campos estan vacios, vuelva a intentarlo"
       );
-      setLoadButton(false);
     }
   }
 
@@ -54,6 +51,7 @@ export function EditRegister() {
           name="fullname"
           label="Nombre"
           placeholder="Ingrese su nombre"
+          disabled={false}
         />
       </div>
       <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>

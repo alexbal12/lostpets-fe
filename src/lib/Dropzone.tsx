@@ -1,4 +1,3 @@
-import { loadingButton } from "hooks";
 import React, { useState } from "react";
 import { useDropzone } from "react-dropzone";
 import { Button } from "ui/buttons";
@@ -11,7 +10,6 @@ const img: any = {
 
 export function Dropzone({ idImg, src }) {
   const [files, setFiles] = useState([]);
-  const { setLoadButton } = loadingButton();
   const { getRootProps, getInputProps, open, acceptedFiles } = useDropzone({
     noClick: true,
     noKeyboard: true,
@@ -21,7 +19,6 @@ export function Dropzone({ idImg, src }) {
         setFiles(e.target.result);
       };
       reader.readAsDataURL(acceptedFiles[0]);
-      setLoadButton(false);
     },
   });
 

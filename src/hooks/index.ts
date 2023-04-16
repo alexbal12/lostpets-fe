@@ -45,7 +45,3 @@ export function positionPet() {
   const [lngLat, setLngLat] = useRecoilState(petPositionAtom);
   return { lngLat, setLngLat };
 }
-export function loadingButton() {
-  const [loadButton, setLoadButton] = useRecoilState(loadButtonAtom);
-  return { loadButton, setLoadButton };
-}

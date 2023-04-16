@@ -44,6 +44,7 @@ export function ReportCard() {
           name="fullname"
           label="Tu nombre"
           placeholder="Ingre su nombre"
+          disabled={false}
         />
         <InputPhoneNumberText name="phone-number" label="Tu telefono" />
         <InputLargeText name="message" label="Donde lo viste?" />
