@@ -16,7 +16,7 @@ export function EditRegister() {
     if (token) {
       getUser(token);
     }
-  });
+  }, []);
   async function handleSubmit(e) {
     e.preventDefault();
     const userEmail = userDataState["email"];
