@@ -8,6 +8,7 @@ import { Button } from "ui/buttons";
 import { InputText } from "ui/text-field";
 import { CaptionText, LinkText } from "ui/texts";
 import { SpinnerLoading } from "ui/spinner";
+import Swal from "sweetalert2";
 
 export function ReportEdit() {
   const navigate = useNavigate();
@@ -22,6 +23,7 @@ export function ReportEdit() {
   const pet = myPetsState.find((pet) => pet.id == `${currentPetState}`);
 
   async function handleFound() {
+    setLoading(true);
     const newDataPet = {
       name: pet.name,
       img: pet.img,
@@ -32,10 +34,16 @@ export function ReportEdit() {
     };
     const update = await fecthUpdatePet(pet.id, newDataPet, token);
     if (update[0] == 1) {
-      alert("Felicitaciones por encontrar tu mascota!🎉");
+      Swal.fire({
+        icon: "success",
+        text: "Felicitaciones por encontrar tu mascota!🎉",
+      });
       navigate("/my-pets");
     } else {
-      alert("Algo salió mal");
+      Swal.fire({
+        icon: "error",
+        text: "Algo salió mal",
+      });
       navigate("/my-pets");
     }
   }
@@ -75,35 +83,58 @@ export function ReportEdit() {
       change = true;
     }
     if (change == false) {
-      alert("Nada cambió");
+      Swal.fire({
+        icon: "info",
+        text: "No cambiaste ningún dato de tu mascota",
+      });
       navigate("/my-pets");
     } else {
       setLoading(true);
       const update = await fecthUpdatePet(pet.id, newDataPet, token);
       if (update[0] == 1) {
-        alert("Se actualizaron los datos");
+        Swal.fire({
+          icon: "success",
+          text: "Se actualizaron los datos",
+        });
         navigate("/my-pets");
         const resultado = await fetchMyPets(token);
         setMyPetsState(resultado);
       } else {
-        alert("Algo salió mal");
+        Swal.fire({
+          icon: "error",
+          text: "Algo salió mal",
+        });
         navigate("/my-pets");
       }
     }
   }
   async function handleLink() {
-    if (
-      confirm("Estas seguro que deseas eliminar la mascota? Será permanente")
-    ) {
-      const deletePet = await fecthDeletePet(pet.id, token);
-      if (deletePet.delete == true) {
-        alert("Se eliminó correctamente");
-        navigate("/my-pets");
-      } else {
-        alert("Hubo un error");
-        navigate("/my-pets");
+    Swal.fire({
+      title: "Estas seguro que deseas eliminar la mascota? Será permanente...",
+      showCancelButton: true,
+      confirmButtonText: "Si",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        setLoading(true);
+        const deletePet = fecthDeletePet(pet.id, token);
+        deletePet.then((result) => {
+          if (result.delete == true) {
+            Swal.fire({
+              icon: "success",
+              text: "Se eliminó correctamente",
+            });
+            navigate("/my-pets");
+          } else {
+            Swal.fire({
+              icon: "error",
+              text: "Hubo un error!",
+            });
+          }
+        });
+      } else if (result.dismiss) {
+        setLoading(false);
       }
-    }
+    });
   }
 
   return !pet ? (

@@ -5,6 +5,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { LinkText } from "ui/texts";
 import css from "./index.css";
+import toast, { Toaster } from "react-hot-toast";
 
 function MenuBar() {
   const navigate = useNavigate();
@@ -28,6 +29,7 @@ function MenuBar() {
     const name = e.nativeEvent.submitter.name;
     if (token == "") {
       navigate("/login");
+      toast.error("Debes iniciar sesión!");
     } else if (name == "mydata") {
       navigate("/edit-register");
     } else if (name == "mypets") {
@@ -47,6 +49,7 @@ function MenuBar() {
 
   return (
     <div>
+      <Toaster position="top-center" reverseOrder={false} />
       <form
         style={{
           alignItems: "center",

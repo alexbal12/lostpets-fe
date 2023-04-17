@@ -25,10 +25,12 @@
     "react": "17.0.0",
     "react-dom": "17.0.0",
     "react-dropzone": "^14.2.2",
+    "react-hot-toast": "^2.4.0",
     "react-router-dom": "^6.3.0",
     "react-spinners": "^0.13.8",
     "recoil": "^0.7.3",
     "style-loader": "^3.3.1",
+    "sweetalert2": "^11.7.3",
     "tsconfig-paths-webpack-plugin": "^3.5.2"
   }
 }

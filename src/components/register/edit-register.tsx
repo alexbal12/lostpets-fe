@@ -1,14 +1,17 @@
 import { userData } from "hooks";
 import { fetchDataUser, fetchUpdateUser } from "lib/api";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "ui/buttons";
 import { InputPasswordText, InputText } from "ui/text-field";
+import ClipLoader from "react-spinners/ClipLoader";
+import Swal from "sweetalert2";
 
 export function EditRegister() {
   const token = sessionStorage.getItem("token") || "";
   const { userDataState, setUserDataState } = userData();
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
   async function getUser(token: string) {
     setUserDataState(await fetchDataUser(token));
   }
@@ -19,6 +22,7 @@ export function EditRegister() {
   }, []);
   async function handleSubmit(e) {
     e.preventDefault();
+    setLoading(true);
     const userEmail = userDataState["email"];
     const userName = e.target.fullname.value;
     const password = e.target.password.value;
@@ -26,16 +30,25 @@ export function EditRegister() {
     if (password == passCheck && password != "") {
       const respuesta = await fetchUpdateUser(userName, password, userEmail);
       if (respuesta[0] == 1) {
-        alert("Se cambió la contraseña correctamente");
+        Swal.fire({
+          icon: "success",
+          text: "Se cambió la contraseña correctamente",
+        });
         navigate("/my-pets");
         setUserDataState(await fetchDataUser(token));
       } else {
-        alert(respuesta.error);
+        Swal.fire({
+          icon: "error",
+          text: respuesta.error,
+        });
+        setLoading(false);
       }
     } else {
-      alert(
-        "Las contraseñas no coinciden o los campos estan vacios, vuelva a intentarlo"
-      );
+      Swal.fire({
+        icon: "error",
+        text: "Las contraseñas no coinciden o los campos estan vacios, vuelva a intentarlo...",
+      });
+      setLoading(false);
     }
   }
 
@@ -57,7 +70,13 @@ export function EditRegister() {
         <InputPasswordText name="password" label="Contraseña" />
         <InputPasswordText name="pass-check" label="Repetir contraseña" />
       </div>
-      <Button color="pink" text="Guardar" />
+      {loading ? (
+        <span style={{ display: "flex", justifyContent: "center" }}>
+          <ClipLoader color="#FF9DF5" loading size={50} />
+        </span>
+      ) : (
+        <Button color="pink" text="Ingresar" />
+      )}
     </form>
   );
 }

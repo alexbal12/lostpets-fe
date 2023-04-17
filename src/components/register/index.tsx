@@ -5,6 +5,8 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "ui/buttons";
 import { InputPasswordText, InputText } from "ui/text-field";
 import ClipLoader from "react-spinners/ClipLoader";
+import toast, { Toaster } from "react-hot-toast";
+import Swal from "sweetalert2";
 
 export function Register() {
   const navigate = useNavigate();
@@ -25,21 +27,30 @@ export function Register() {
     let fieldsOk = true;
 
     if (userName == "") {
-      alert("Debe ingresar un nombre");
+      toast.error('El campo "Nombre" es obligatorio');
       fieldsOk = false;
     }
     if (password != passCheck || password == "") {
-      alert("Las contraseñas no coinciden o los campos estan vacios");
+      Swal.fire({
+        icon: "error",
+        text: "Las contraseñas no coinciden o los campos estan vacios, vuelva a intentarlo...",
+      });
       fieldsOk = false;
     }
     if (fieldsOk) {
       setLoading(true);
       const respuesta = await fecthCreateUser(userName, emailInput, password);
       if (respuesta) {
-        alert("Se creo el usuario correctamente!");
+        Swal.fire({
+          icon: "success",
+          text: "Se creo el usuario correctamente!",
+        });
         navigate("/login");
       } else {
-        alert("Ocurrió un error, vuelva a intentarlo");
+        Swal.fire({
+          icon: "error",
+          text: "Ocurrió un error, vuelva a intentarlo...",
+        });
       }
     }
   }
@@ -49,6 +60,7 @@ export function Register() {
       onSubmit={handleSubmit}
       style={{ display: "flex", flexDirection: "column", gap: "70px" }}
     >
+      <Toaster position="top-center" reverseOrder={false} />
       <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
         <InputText
           value=""

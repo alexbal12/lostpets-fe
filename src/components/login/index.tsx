@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "ui/buttons";
 import { InputText } from "ui/text-field";
 import ClipLoader from "react-spinners/ClipLoader";
+import Swal from "sweetalert2";
 
 export function Login() {
   const navigate = useNavigate();
@@ -14,30 +15,39 @@ export function Login() {
     e.preventDefault();
     const email = e.target.email.value;
     if (email == "") {
-      alert("Campo obligatorio, ingrese un email");
+      Swal.fire({
+        icon: "error",
+        text: "Campo obligatorio, ingrese un email",
+      });
     } else if (
       !/^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i.test(
         email
       )
     ) {
-      alert("Email invalido, ingrese un Email valido!");
+      Swal.fire({
+        icon: "error",
+        text: "Email invalido, ingrese un Email valido!",
+      });
     } else {
       setLoading(true);
       const respuesta = await fetchCheckUser(email);
       if (respuesta.message) {
-        if (
-          confirm(
+        Swal.fire({
+          title:
             respuesta.message +
-              '. Desea crear un usuario nuevo con el correo: "' +
-              email +
-              '" ?'
-          )
-        ) {
-          setEmailDataState(email);
-          navigate("/register");
-        } else {
-          setLoading(false);
-        }
+            '. Desea crear un usuario nuevo con el correo: "' +
+            email +
+            '" ?',
+          showCancelButton: true,
+          confirmButtonText: "Si",
+        }).then((result) => {
+          if (result.isConfirmed) {
+            setEmailDataState(email);
+            navigate("/register");
+          } else if (result.dismiss) {
+            setLoading(false);
+          }
+        });
       } else {
         setEmailDataState(respuesta);
         navigate("/password");

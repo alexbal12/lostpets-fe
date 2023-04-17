@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "ui/buttons";
 import { InputPasswordText, InputText } from "ui/text-field";
 import ClipLoader from "react-spinners/ClipLoader";
+import Swal from "sweetalert2";
 
 export function ForgotPassword() {
   const navigate = useNavigate();
@@ -28,14 +29,23 @@ export function ForgotPassword() {
       const password = e.target.password.value;
       const respuesta = await fetchUpdateUser(user, password, email);
       if (respuesta[0] == 1) {
-        alert("Se cambió la contraseña correctamente");
+        Swal.fire({
+          icon: "success",
+          text: "Se cambió la contraseña correctamente",
+        });
         navigate("/login");
       } else {
         navigate("/login");
-        alert(respuesta.error);
+        Swal.fire({
+          icon: "error",
+          text: respuesta.error,
+        });
       }
     } else {
-      alert("No coinciden las contraseñas, intentelo nuevamente");
+      Swal.fire({
+        icon: "error",
+        text: "No coinciden las contraseñas, intentelo nuevamente",
+      });
     }
   }
   return (

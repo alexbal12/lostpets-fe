@@ -4,7 +4,9 @@ import { fecthReportPet } from "lib/api";
 import { Dropzone } from "lib/Dropzone";
 import { Mapbox } from "lib/Mapbox";
 import React, { useState } from "react";
+import toast, { Toaster } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 import { Button } from "ui/buttons";
 import { SpinnerLoading } from "ui/spinner";
 import { InputText } from "ui/text-field";
@@ -26,12 +28,12 @@ export function Report() {
     const state = "perdido";
     const userEmail = userDataState["email"];
     if (petName == "") {
-      alert("Ingrese el nombre de su mascota");
+      toast.error('El campo "nombre de su mascota" es obligatorio');
     } else if (petImg.length < 100) {
       petImg.lenght;
-      alert("Seleccione la imagen de su mascota");
+      toast.error("Seleccione la imagen de su mascota");
     } else if (lngLat.length == 0) {
-      alert("Seleccione en el mapa donde perdió su mascota");
+      toast.error("Seleccione en el mapa donde perdió su mascota");
     } else {
       setLoading(true);
       const pet = {
@@ -44,9 +46,10 @@ export function Report() {
       };
       const respuesta = await fecthReportPet(pet, token);
       if (respuesta) {
-        alert(
-          "Se publicó correctamente tu mascota, espero que la encuentres 🙂"
-        );
+        Swal.fire({
+          icon: "success",
+          text: "Se publicó correctamente tu mascota, espero que la encuentres 🙂",
+        });
         navigate("/my-pets");
       }
     }
@@ -59,6 +62,7 @@ export function Report() {
       style={{ display: "flex", flexDirection: "column", gap: "35px" }}
       onSubmit={submitForm}
     >
+      <Toaster position="top-center" reverseOrder={false} />
       <InputText
         value=""
         label="Nombre"
