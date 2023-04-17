@@ -63,7 +63,6 @@ export function EditRegister() {
           name="fullname"
           label="Nombre"
           placeholder="Ingrese su nombre"
-          disabled={false}
         />
       </div>
       <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>

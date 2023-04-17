@@ -11,29 +11,29 @@ export async function fetchNearbyPets(lat: any, long: any) {
 
   return pets.json();
 }
-export async function fetchReportData(
-  userEmail,
-  reporterName,
-  phoneNumber,
-  message,
-  petName
-) {
-  const resultado = await fetch(`${API_BASE_URL}/reports`, {
-    method: "POST",
-    headers: {
-      "content-type": "application/json",
-    },
-    body: JSON.stringify({
-      userEmail,
-      reporterName,
-      phoneNumber,
-      message,
-      petName,
-    }),
-  });
+// export async function fetchReportData(
+//   userEmail,
+//   reporterName,
+//   phoneNumber,
+//   message,
+//   petName
+// ) {
+//   const resultado = await fetch(`http://localhost:3000/reports`, {
+//     method: "POST",
+//     headers: {
+//       "content-type": "application/json",
+//     },
+//     body: JSON.stringify({
+//       userEmail,
+//       reporterName,
+//       phoneNumber,
+//       message,
+//       petName,
+//     }),
+//   });
 
-  return resultado.json();
-}
+//   return resultado.json();
+// }
 export async function fetchCheckUser(email: any) {
   const user = await fetch(`${API_BASE_URL}/users/search?email=${email}`, {
     method: "get",

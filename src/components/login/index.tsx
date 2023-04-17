@@ -64,7 +64,6 @@ export function Login() {
         name="email"
         label="Email"
         placeholder="Ingrese su email"
-        disabled={false}
       />
       {loading ? (
         <span style={{ display: "flex", justifyContent: "center" }}>

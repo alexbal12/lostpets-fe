@@ -59,7 +59,7 @@ export function ForgotPassword() {
           name="email"
           label="Email"
           placeholder="Ingrese su email"
-          disabled={true}
+          readyonly={true}
         />
       </div>
       <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>

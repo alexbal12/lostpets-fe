@@ -67,14 +67,13 @@ export function Register() {
           name="fullname"
           label="Nombre"
           placeholder="Ingrese su nombre"
-          disabled={false}
         />
         <InputText
           value={emailDataState}
           name="email"
           label="Email"
           placeholder="Ingrese su email"
-          disabled={true}
+          readyonly={true}
         />
       </div>
       <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>

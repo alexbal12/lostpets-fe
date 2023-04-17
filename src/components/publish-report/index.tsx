@@ -68,7 +68,6 @@ export function Report() {
         label="Nombre"
         placeholder="Ingrese el nombre de su mascota"
         name="pet-name"
-        disabled={false}
       />
       <Dropzone idImg="petImg" src={imgEmpty} />
       <div>

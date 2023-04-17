@@ -1,18 +1,24 @@
 import React from "react";
 import { CaptionText } from "ui/texts";
 import css from "./index.css";
-
-export function InputText({ label, placeholder, name, value, disabled }) {
+type inputTextType = {
+  label: string;
+  placeholder?: string;
+  name: string;
+  value;
+  readyonly?;
+};
+export function InputText(props: inputTextType) {
   return (
     <div>
-      <CaptionText text={label} />
+      <CaptionText text={props.label} />
       <input
-        defaultValue={value}
-        name={name}
-        className={css.root}
+        defaultValue={props.value}
+        name={props.name}
+        className={props.readyonly ? css.root + " " + css.disabled : css.root}
         type="text"
-        placeholder={placeholder}
-        disabled={disabled}
+        placeholder={props.placeholder}
+        readOnly={props.readyonly}
       ></input>
     </div>
   );
